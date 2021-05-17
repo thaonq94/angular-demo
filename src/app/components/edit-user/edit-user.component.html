@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Edit User</h2>
+<mat-dialog-content class="mat-typography">
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Name" value="{{data?.user?.name}}">
+        </mat-form-field>
+        
+        <mat-form-field class="example-full-width">
+            <mat-label>Phone</mat-label>
+            <input matInput placeholder="Phone" value="{{data?.user?.phone}}">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" value="{{data?.user?.email}}">
+          </mat-form-field>
+       
+      </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Confirm</button>
+</mat-dialog-actions>

@@ -1,0 +1,3 @@
+<mat-list class="p-0" role="list">
+    <mat-list-item [routerLink]="menu.route" class="{{menu?.isActive ? 'active' : ''}}" role="listitem" *ngFor="let menu of sideMenus">{{menu?.name}}</mat-list-item>
+  </mat-list>

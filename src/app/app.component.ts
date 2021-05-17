@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  sideMenus: any = [
+    {
+      name: 'User',
+      route: ['/', 'users'],
+    },
+    {
+      name: 'Advertiser',
+      route: ['advertiser'],
+    }
+  ] 
   title = 'angular-demo';
 }
