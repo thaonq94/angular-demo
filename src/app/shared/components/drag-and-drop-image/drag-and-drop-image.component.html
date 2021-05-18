@@ -1,0 +1,36 @@
+
+<div class="description px-5 pb-3">
+    <span>Hình ảnh</span>
+    <div class="font-weight-bold">(Chú ý: Hình upload không được quá 8MB!)</div>
+</div>
+<div class="container" (fileDropped)="onFileDropped($event)">
+	<input type="file" accept="image/*" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event)" />
+	<h3>Kéo và thả hình ảnh vào đây ...</h3>
+	<h3>or</h3>
+	<label for="fileDropRef">Chọn hình ảnh từ máy</label>
+</div>
+<ng-container *ngIf="files?.length">
+    <div class="files-list container">
+        <div class="pb-3">
+            Danh sách hình đã chọn
+        </div>
+        <div class="row">
+            <div class="col-3" *ngFor="let file of files; let i = index">
+                <div class="single-file">
+                    <img [src]="file?.src" class="imgPlaceholder">
+                    <div class="info">
+                        <span>{{ formatBytes(file?.size, 0) }}</span>
+                        <span class="material-icons-outlined delete-icon" (click)="deleteFile(i)">
+                            highlight_off
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="confirm-upload">
+        <span class="btn-confirm" (click)="uploadFiles()">
+            Tải lên
+        </span>
+    </div>
+</ng-container>
