@@ -12,6 +12,10 @@ export class AppComponent {
       route: ['/', 'users'],
     },
     {
+      name: 'Task',
+      route: ['tasks'],
+    },
+    {
       name: 'Advertiser',
       route: ['advertiser'],
     }

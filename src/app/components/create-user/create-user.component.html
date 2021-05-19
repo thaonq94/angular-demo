@@ -21,12 +21,20 @@
                 <mat-label>Position</mat-label>
                 <input matInput placeholder="Position" formControlName="position">
             </mat-form-field>
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="status">
+                  <mat-option *ngFor="let status of listStatus" [value]="status.value">
+                    {{status.title}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
         </form>
     </mat-dialog-content>
     <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Đóng</button>
     <button mat-raised-button color="primary" cdkFocusInitial (click)="taskStep()">
-        <div class="spinner-border" role="status"></div>
+        <div *ngIf="loading" class="spinner-border" role="status"></div>
         Tiếp tục
     </button>
     </mat-dialog-actions>
@@ -35,37 +43,20 @@
 <ng-container *ngIf="currentView(view.TASK)">
     <h2 mat-dialog-title>Task (Công việc)</h2>
     <mat-dialog-content class="mat-typography">
-        <form class="example-form">
-            <mat-form-field class="example-full-width">
-            <mat-label>Name</mat-label>
-            <input matInput placeholder="Name" value="{{data?.user?.name}}">
-            </mat-form-field>
-            
-            <mat-form-field class="example-full-width">
-                <mat-label>Phone</mat-label>
-                <input matInput placeholder="Phone" value="{{data?.user?.phone}}">
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width">
-                <mat-label>Email</mat-label>
-                <input matInput placeholder="Email" value="{{data?.user?.email}}">
-            </mat-form-field>
-            
-            <mat-form-field class="example-full-width">
-                <mat-label>Position</mat-label>
-                <input matInput placeholder="Position" value="{{data?.user?.position}}">
-            </mat-form-field>
-        </form>
+        <mat-list>
+            <mat-list-item *ngFor="let task of tasks">
+              <mat-icon mat-list-icon>task</mat-icon>
+              <div mat-line>{{task.name}}</div>
+              <div mat-line> {{task.description}} </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </mat-list>
     </mat-dialog-content>
-    <mat-dialog-actions class="flex-column">
-        <div  align="end">
-            <button mat-raised-button color="primary" cdkFocusInitial>Tạo công việc mới</button>
-            <button mat-button>Để sau</button>
-        </div>
+    <mat-dialog-actions >
         <div  align="end">
             <button mat-button (click)="infoStep()">Quay lại</button>
-
+            <button mat-stroked-button mat-dialog-close>Để sau</button>
+            <button mat-raised-button color="primary" (click)="createTask()">Tạo công việc mới</button>
         </div>
-
     </mat-dialog-actions>
 </ng-container>

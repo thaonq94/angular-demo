@@ -19,6 +19,8 @@ import { MaterialModule } from './shared/components/material';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateTaskComponent } from './components/create-task/create-task.component';
+import { DragAndDropImageModule } from './shared/components/drag-and-drop-image/drag-and-drop-image.module';
 
 const routes: Routes = [
  
@@ -29,6 +31,10 @@ const routes: Routes = [
   {
     path: 'users',
     loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule)
+  },
+  {
+    path: 'tasks',
+    loadChildren: () => import('./pages/tasks/tasks.module').then(m => m.TasksModule)
   },
   {
     path: '**',
@@ -51,6 +57,7 @@ const apis = [
     EditUserComponent,
     BreadcrumbComponent,
     CreateUserComponent,
+    CreateTaskComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +70,8 @@ const apis = [
     NgbModule,
     MaterialModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    DragAndDropImageModule,
   ],
   providers: [
     { provide: NG_ENTITY_SERVICE_CONFIG,useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' }},

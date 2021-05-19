@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdvertiserComponent } from './advertiser.component';
+import { TasksComponent } from './tasks.component';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
     path: '',
-    component: AdvertiserComponent,
+    component: TasksComponent,
     children: [
       {
-        path: '**', redirectTo: 'users'
+        path: '**', redirectTo: 'tasks'
       }
     ]
   }
 ];
 
 @NgModule({
-  declarations: [AdvertiserComponent],
+  declarations: [TasksComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
   ]
 })
-export class AdvertiserModule { }
+export class TasksModule { }

@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>Tạo công việc</h2>
+<mat-dialog-content class="mat-typography">
+    <form class="example-form" [formGroup]="taskForm">
+        <mat-form-field class="example-full-width">
+          <mat-label>Tên công việc</mat-label>
+          <input matInput placeholder="Tên công việc" formControlName="name">
+        </mat-form-field>
+        <mat-form-field class="example-form-field w-100" appearance="fill">
+            <mat-label>Thời gian</mat-label>
+            <mat-date-range-input
+                formGroupName="duration"
+              [rangePicker]="campaignOnePicker"
+              [comparisonStart]="taskForm.controls['duration'].value.start"
+              [comparisonEnd]="taskForm.controls['duration'].value.end">
+              <input matStartDate placeholder="Start date" formControlName="start">
+              <input matEndDate placeholder="End date" formControlName="end">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+            <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Mô tả công việc</mat-label>
+            <textarea matInput [matTextareaAutosize]="true" placeholder="Mô tả công việc..." formControlName="description"></textarea>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Layout</mat-label>
+            <mat-select formControlName="layout_type">
+              <mat-option *ngFor="let type of layout" [value]="type.value">
+                {{type.title}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field *ngIf="taskForm.controls['layout_type'].value == 'link'" class="example-full-width">
+          <mat-label>Link</mat-label>
+          <input matInput placeholder="Link công việc" formControlName="link">
+        </mat-form-field>
+        <ng-container *ngIf="taskForm.controls['layout_type'].value == 'image'">
+            <app-drag-and-drop-image></app-drag-and-drop-image>
+        </ng-container>
+      </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Đóng</button>
+  <button mat-raised-button color="primary">Tạo công việc mới</button>
+</mat-dialog-actions>
