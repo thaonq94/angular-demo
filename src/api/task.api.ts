@@ -13,15 +13,15 @@ export class TaskApi {
 
   
 
-  async getUsers() {
+  async getTasks() {
       return await this.http.get(`https://jsonplaceholder.typicode.com/users`, {}).toPromise().then(res => res);
   }
 
-  async createUser(request: TaskAPI.CreateTaskRequest) {
+  async createTask(request: TaskAPI.CreateTaskRequest) {
     // return await this.http.post(`https://jsonplaceholder.typicode.com/users`, request).toPromise();
   }
 
-  async updateUser(request: TaskAPI.UpdateTaskRequest) {
+  async updateTask(request: TaskAPI.UpdateTaskRequest) {
     // return await this.http.post(`https://jsonplaceholder.typicode.com/users`, request).toPromise();
   }
 
@@ -37,7 +37,7 @@ export namespace TaskAPI {
     link?: string;
     image_urls?: Array<string>;
   }
-  
+
   export class UpdateTaskRequest {
     id?: string;
     name?: string;
