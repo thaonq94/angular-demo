@@ -27,7 +27,7 @@ export class CreateUserComponent implements OnInit {
     id: '',
     name: ['', Validators.required],
     phone: ['', Validators.required],
-    email: ['', Validators.required],
+    email: ['', Validators.compose([Validators.required, Validators.email])],
     position: ['', Validators.required],
     status: ['', Validators.required]
   });
@@ -74,7 +74,6 @@ export class CreateUserComponent implements OnInit {
         ...userActive
       })
     }
-   
   }
 
   currentView(view: View) {
@@ -89,24 +88,28 @@ export class CreateUserComponent implements OnInit {
     let config = new MatSnackBarConfig();
     config.duration = 2000;
     try {
+      if (this.userInfoForm.controls['email'].value && this.userInfoForm.controls['email'].errors?.email) {
+        this.snackBar.open('Email không đúng định dạng', '', config)
+        return
+      }
       if (this.userInfoForm.invalid) {
         this.snackBar.open('Vui lòng điền đầy đủ thông tin', '', config)
-      } else {
-        this.loading = true;
-        setTimeout(async (_: any) => {
-          if (this.userInfoForm.controls['id'].value) {
-            await this.userService.updateUser(this.userInfoForm.value);
-            console.log('updateUser', this.userInfoForm.value)
-          } else {
-            this.userInfoForm.patchValue({
-              id: (+new Date()).toString()
-            })
-            await this.userService.createUser(this.userInfoForm.value);
-          }
-          this.loading = false;
-          this._currentView = this.view.TASK;
-        }, 1500);
-      }
+        return;
+      } 
+      this.loading = true;
+      setTimeout(async (_: any) => {
+        if (this.userInfoForm.controls['id'].value) {
+          await this.userService.updateUser(this.userInfoForm.value);
+          console.log('updateUser', this.userInfoForm.value)
+        } else {
+          this.userInfoForm.patchValue({
+            id: (+new Date()).toString()
+          })
+          await this.userService.createUser(this.userInfoForm.value);
+        }
+        this.loading = false;
+        this._currentView = this.view.TASK;
+      }, 1500);
     } catch (e) {
       this.loading = false;
       this.snackBar.open('Vui lòng điền đầy đủ thông tin', '', config)

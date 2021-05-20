@@ -14,15 +14,16 @@ export class TaskApi {
   
 
   async getTasks() {
-      return await this.http.get(`https://jsonplaceholder.typicode.com/users`, {}).toPromise().then(res => res);
+      return
+      //TODO
   }
 
   async createTask(request: TaskAPI.CreateTaskRequest) {
-    // return await this.http.post(`https://jsonplaceholder.typicode.com/users`, request).toPromise();
+    //TODO
   }
 
   async updateTask(request: TaskAPI.UpdateTaskRequest) {
-    // return await this.http.post(`https://jsonplaceholder.typicode.com/users`, request).toPromise();
+    //TODO
   }
 
 
