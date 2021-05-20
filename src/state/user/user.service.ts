@@ -21,13 +21,11 @@ import { UserStore } from './user.store';
       try {
         if (this.userQuery.getAll().length) {
           //Có api thì bỏ case này
-          console.log('Có api thì bỏ case này')
           return;
         }
-        console.log('Chạy tiếp')
         const res: any = await this.userApi.getUsers();
         res.map((user: User) => {
-          user.position = 'dev',
+          user.position = user.position || 'dev',
           user.status =  user.status || 'enable'
         })
         this.userStore.set(res);

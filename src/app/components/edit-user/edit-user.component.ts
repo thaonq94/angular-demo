@@ -42,7 +42,6 @@ export class EditUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userQuery.getActive();
-    console.log('user', this.userQuery.getActive())
     this.userForm.patchValue({...this.user});
   }
 

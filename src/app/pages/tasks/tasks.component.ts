@@ -30,7 +30,6 @@ export class TasksComponent implements OnInit, OnDestroy {
   async ngOnInit() {
     this.tasks$.subscribe(_ => {
       this.taskService.getTasks().then(_ => {
-        console.log('this.taskQuery.getAll()', this.taskQuery.getAll())
         this.dataSource = new MatTableDataSource(this.taskQuery.getAll());
         this.dataSource.paginator = this.paginator;
       });

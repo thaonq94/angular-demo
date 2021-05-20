@@ -100,7 +100,6 @@ export class CreateUserComponent implements OnInit {
       setTimeout(async (_: any) => {
         if (this.userInfoForm.controls['id'].value) {
           await this.userService.updateUser(this.userInfoForm.value);
-          console.log('updateUser', this.userInfoForm.value)
         } else {
           this.userInfoForm.patchValue({
             id: (+new Date()).toString()
